@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeR7 - Innovative Programming Solutions</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: #ffffff;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #38bdf8;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            width: 50%;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: particleAnimation 15s infinite linear;
+        }
+        
+        @keyframes particleAnimation {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-800px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #38bdf8;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #38bdf8;
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #ffffff;
+            margin-left: 15px;
+            box-shadow: none;
+        }
+        
+        .btn-secondary:hover {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #0f172a;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: #38bdf8;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 25px;
+            position: relative;
+        }
+        
+        .member-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #0f172a;
+        }
+        
+        .member-role {
+            font-size: 16px;
+            color: #38bdf8;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .member-description {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .member-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .price-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #64748b;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            margin-right: 10px;
+            color: #0f172a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #38bdf8;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: #38bdf8;
+        }
+        
+        .contact-info p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #cbd5e1;
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .contact-details i {
+            width: 40px;
+            height: 40px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #38bdf8;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: #38bdf8;
+            color: #ffffff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: #0ea5e9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            padding: 50px 0 20px;
+            color: #cbd5e1;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 30px;
+            height: 2px;
+            background: #38bdf8;
+        }
+        
+        .footer-col p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: #38bdf8;
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                width: 100%;
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">We<span>R7</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Transforming Ideas Into Digital Excellence</h1>
+            <p>At WeR7, we don't just write code – we craft innovative solutions that empower businesses to thrive in the digital landscape. Our team of elite developers and specialists brings your vision to life with cutting-edge technology and unmatched expertise.</p>
+            <div>
+                <a href="#team" class="btn">Meet Our Team</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="../multimedia_project/images/company_image.jpg" alt="WeR7 Programming Company">
+        </div>
+        <div class="particles" id="particles"></div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Expert Team</h2>
+                <p>Meet the brilliant minds behind WeR7's success. Our diverse team of specialists brings together years of experience and cutting-edge skills to deliver exceptional solutions for our clients.</p>
+            </div>
+            <div class="team-container">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/multimedia_project/images/Front-End.jpg" alt="Mohamed Mahmoud Abu Al Majd">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Mohamed Mahmoud Abu Al Majd</h3>
+                        <p class="member-role">Front-End Developer</p>
+                        <p class="member-description">A visionary front-end developer with an exceptional eye for design and user experience. Mohamed crafts stunning, responsive interfaces that captivate users and drive engagement, leveraging the latest frameworks and technologies.</p>
+                        <div class="member-price">
+                            <span class="price-label">Starting at:</span>
+                            <span>$85/hr</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i>in</i></a>
+                            <a href="#"><i>tw</i></a>
+                            <a href="#"><i>gh</i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/multimedia_project/images/back-end.jpg" alt="Abd El Rahman">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Abd El Rahman</h3>
+                        <p class="member-role">Back-End Developer</p>
+                        <p class="member-description">A brilliant architect of server-side logic and database structures. Abd El Rahman specializes in building robust, scalable back-end systems that power complex applications with flawless performance and security.</p>
+                        <div class="member-price">
+                            <span class="price-label">Starting at:</span>
+                            <span>$95/hr</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i>in</i></a>
+                            <a href="#"><i>tw</i></a>
+                            <a href="#"><i>gh</i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/multimedia_project/images/networking.jpg" alt="Ali & Ziad">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Ali & Ziad</h3>
+                        <p class="member-role">Networking Engineers</p>
+                        <p class="member-description">Our dynamic networking duo ensures seamless connectivity and optimal performance. Together, they design and implement sophisticated network infrastructures that guarantee reliability, security, and efficiency.</p>
+                        <div class="member-price">
+                            <span class="price-label">Starting at:</span>
+                            <span>$110/hr</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i>in</i></a>
+                            <a href="#"><i>tw</i></a>
+                            <a href="#"><i>gh</i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/multimedia_project/images/cybersecurity.jpg" alt="Ahmed & Mohamed Tawfiq">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Ahmed & Mohamed Tawfiq</h3>
+                        <p class="member-role">Information Security Specialists</p>
+                        <p class="member-description">Our security experts safeguard your digital assets with uncompromising vigilance. Specializing in penetration testing, vulnerability assessment, and security hardening, they ensure your systems remain impenetrable.</p>
+                        <div class="member-price">
+                            <span class="price-label">Starting at:</span>
+                            <span>$125/hr</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i>in</i></a>
+                            <a href="#"><i>tw</i></a>
+                            <a href="#"><i>gh</i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 5 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/multimedia_project/images/tester.jpg" alt="Mohamed Abdellatif">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Mohamed Abdellatif</h3>
+                        <p class="member-role">Software Tester & Team Leader</p>
+                        <p class="member-description">The quality guardian and strategic leader who coordinates our development process. With meticulous attention to detail and exceptional leadership skills, Mohamed ensures flawless delivery and team cohesion.</p>
+                        <div class="member-price">
+                            <span class="price-label">Starting at:</span>
+                            <span>$105/hr</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i>in</i></a>
+                            <a href="#"><i>tw</i></a>
+                            <a href="#"><i>gh</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to transform your digital presence? Our team of experts is here to bring your vision to life with cutting-edge solutions tailored to your unique needs.</p>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="map"></i>
+                            <span>123 Tech Boulevard, Innovation District</span>
+                        </li>
+                        <li>
+                            <i class="phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="email"></i>
+                            <span>info@wer7.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About WeR7</h3>
+                    <p>WeR7 is a premier programming company delivering innovative solutions through a team of elite developers and specialists. We transform ideas into digital excellence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile Applications</a></li>
+                        <li><a href="#">Network Solutions</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">Software Testing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 WeR7. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Particle animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const particles = document.getElementById('particles');
+            
+            // Create particles
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random color
+                const colors = ['#38bdf8', '#0ea5e9', '#0284c7', '#7dd3fc', '#ffffff'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particles.appendChild(particle);
+            }
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
